@@ -144,6 +144,9 @@ class HumanNeuroRedcap:
         record_info = {"record_id": ucsf_id, "redcap_event_name": "demographics_arm_1", "ucsf_id": ucsf_id, "ucsf_guid": ucsf_guid, "nda_guid": nda_guid}
         self.database.import_records([record_phi, record_info])
 
-        self.database.export_records("df",
+        try:
+            _ = self.database.export_records(records=[ucsf_id])
+        except Exception as e:
+            warn(f"Failed to add patient {mrn} to database: {e}")
 
         return ucsf_id, ucsf_guid
