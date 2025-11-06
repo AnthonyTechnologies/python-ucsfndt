@@ -150,3 +150,6 @@ class HumanNeuroRedcap:
             warn(f"Failed to add patient {mrn} to database: {e}")
 
         return ucsf_id, ucsf_guid
+
+    def ucsf_id_lookup(self, id_: str, id_type: str) -> str:
+        pass
